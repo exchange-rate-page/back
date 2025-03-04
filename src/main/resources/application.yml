@@ -1,0 +1,12 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${googleClientId}
+            client-secret: ${clientSecret}
+            scope:
+              - email
+              - profile
+            redirect-uri: ${redirectUrl}

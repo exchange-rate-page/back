@@ -26,7 +26,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         CustomOAuthUser userDetails = (CustomOAuthUser) authentication.getPrincipal();
 
-        String token = jwtUtil.createJwt(userDetails.getId(), userDetails.getName(), 60 * 60 * 60L);
+        String token = jwtUtil.createJwt(userDetails.getId(), userDetails.getName(), jwtUtil.getExpiredMs());
         Cookie cookie = createCookie(jwtUtil.getAccessTokenName(), token, jwtUtil.getExpiredMs());
         response.addCookie(cookie);
 

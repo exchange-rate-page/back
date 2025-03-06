@@ -1,19 +1,24 @@
-package exate.com.member;
+package com.exate.member;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class MemberRepository {
+
     @PersistenceContext
     private EntityManager em;
 
-    public void save(Member member) {
+    @Transactional
+    public Member save(Member member) {
         if(member.getId() == null) {
             em.persist(member);
-            return;
+        } else {
+            em.merge(member);
         }
-        em.merge(member);
+
+        return member;
     }
 }

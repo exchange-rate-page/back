@@ -1,4 +1,4 @@
-package exate.com;
+package com.exate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
